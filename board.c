@@ -1,31 +1,29 @@
 #include<stdio.h>
 #include "board.h"
 
+/*
+ * Given a board, this function draws it to the screen
+ */
 void drawBoard(char board[3][3])
 {
-   printf("\n%c | %c | %c \n", 
-         charAt(board, 0, 0),
-         charAt(board, 1, 0),
-         charAt(board, 2, 0)
-   );
+   int row, col;
 
-   printf("---------\n");
+   printf("\n");
 
-   printf("%c | %c | %c \n", 
-         charAt(board, 0, 1),
-         charAt(board, 1, 1),
-         charAt(board, 2, 1)
-   );
+   for(row = 0; row < 3; row++){
+      for(col = 0; col < 3; col++)
+         printf(" %c %c", charAt(board, col, row), (col == 2) ? '\n' : '|');
+      if(row != 2)
+         printf("-----------\n");
+   }
 
-   printf("---------\n");
-
-   printf("%c | %c | %c \n\n", 
-         charAt(board, 0, 2),
-         charAt(board, 1, 2),
-         charAt(board, 2, 2)
-   );
+   printf("\n");
 }
 
+/*
+ * Once you allocate a board, immediately call this function.
+ * It sets every character in the board to ' '.
+ */
 void initBoard(char board[3][3])
 {
    int i,j;
@@ -35,6 +33,10 @@ void initBoard(char board[3][3])
          board[i][j] = ' ';
 }
 
+/*
+ * Given a board, return the characer with coordinates (zero indexed)
+ * <x,y> (or <col, row> if you prefer to think of it that way)
+ */
 char charAt(char board[3][3], int x, int y)
 {
    if( x > 2 || x < 0 || y > 2 || y < 0)
@@ -54,8 +56,14 @@ int movexy(char board[3][3], int x, int y, char c)
    }
 }
 
-//Convenince method that lets us number the squares from 1-9
-//(left to right, top to bottom)
+/*
+ * Wrapper for movexy. This function lets you number the board
+ * squares 1-9 as follows:
+ *
+ *  1  2  3
+ *  4  5  6
+ *  7  8  9
+ */
 int mv(char board[3][3], int x, char c)
 {
    movexy(board, (x - 1) % 3, (x - 1) / 3, c);
@@ -67,6 +75,13 @@ int isMoveLegal(char board[3][3], int x, int y)
 }
 
 
+/*
+ * Determins current state of the board:
+ *
+ *  1: Somebody won
+ * -1: There is a draw
+ *  0: Keep playing
+ */
 int state(char board[3][3])
 {
    int row, col, i;
