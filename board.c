@@ -66,7 +66,7 @@ int movexy(char board[3][3], int x, int y, char c)
  */
 int mv(char board[3][3], int x, char c)
 {
-   movexy(board, (x - 1) % 3, (x - 1) / 3, c);
+   return movexy(board, (x - 1) % 3, (x - 1) / 3, c);
 }
 
 int isMoveLegal(char board[3][3], int x, int y)
