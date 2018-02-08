@@ -91,14 +91,14 @@ int state(char board[3][3])
       if(   (board[col][0] == board[col][1]) &&
             (board[col][1] == board[col][2]))
          if(board[col][0] != ' ')
-            return 1; //we have a winner
+            return board[col][0]; //we have a winner
 
    //check rows
    for(row=0; row < 3; row++)
       if(   (board[0][row] == board[1][row]) &&
             (board[1][row] == board[2][row]))
          if(board[0][row] != ' ')
-            return 1; //we have a winner
+            return board[0][row]; //we have a winner
 
    //check diagonals
    if(   (((board[0][0] == board[1][1]) &&
@@ -108,7 +108,7 @@ int state(char board[3][3])
            (board[1][1] == board[0][2]))) 
          && 
          (board[1][1] != ' '))
-      return 1; //we have a winner
+      return board[1][1]; //we have a winner
 
    //check for draw
    for(row=0; row < 3; row++)
