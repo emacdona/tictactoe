@@ -16,13 +16,13 @@ int main(int argc, char* argv[])
       system("clear");
       drawBoard(board);
 
-      if(state(board) == 1){
-         printf("\nWinner!\n");
+      if(state(board) == -1){
+         printf("\nDraw!\n");
          return 0;
       }
 
-      if(state(board) == -1){
-         printf("\nDraw!\n");
+      if(state(board) != 0){
+         printf("\nPlayer %c wins!\n", state(board));
          return 0;
       }
 
