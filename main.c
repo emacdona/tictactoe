@@ -4,7 +4,7 @@
 int main(int argc, char* argv[])
 {
    char board[3][3];
-   char input[10];
+   char input[3];
    int moveTo;
    int turn = 0;
    char player;
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
       }
 
       printf("\n(turn #%i) To which square would you (player %c) like to move? ", turn, player);
-      fgets(input, 10, stdin);
+      fgets(input, 3, stdin);
       moveTo = atoi(input);
 
       if(mv(board, moveTo, player))
