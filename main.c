@@ -8,6 +8,8 @@ int main(int argc, char* argv[])
    int moveTo;
    int turn = 0;
    char player;
+   
+   printf("Hiii");
 
    initBoard(board);
 
